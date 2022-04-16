@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html::head"></head>
+
+<body class="bg-light">
+<div th:replace="fragments.html::navigation-bar"></div>
+<div class="container">
+    <div class="py-5 text-center">
+        <p class="lead">SWeather</p>
+        <h2>Sign Up</h2>
+    </div>
+    <div class="row justify-content-center">
+        <form class="needs-validation col-sm-6" action="#"
+              th:action="@{/sign-up}" th:object="${signUpForm}" method="post" novalidate>
+
+            <div class="form-group">
+                <label for="email">아이디</label>
+                <input id="email" type="email" th:field="*{email}" class="form-control"
+                       placeholder="ex) abc@example.com" aria-describedby="emailHelp" required>
+                <small id="emailHelp" class="form-text text-muted">
+                    SWeather(는)은 사용자의 이메일을 공개하지 않습니다.
+                </small>
+                <small class="invalid-feedback">이메일을 입력하세요.</small>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
+                    Error</small>
+            </div>
+
+            <div class="form-group">
+                <label for="password">패스워드</label>
+                <input id="password" type="password" th:field="*{password}" class="form-control"
+                       aria-describedby="passwordHelp" required minlength="8" maxlength="50">
+                <small id="passwordHelp" class="form-text text-muted">
+                    8자 이상 50자 이내로 입력하세요. 영문자, 숫자, 특수기호를 사용할 수 있으며 공백은 사용할 수 없습니다.
+                </small>
+                <small class="invalid-feedback">패스워드를 입력하세요.</small>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password
+                    Error</small>
+            </div>
+
+            <div class="form-group">
+                <label for="passwordCheck">패스워드 확인</label>
+                <input id="passwordCheck" type="password" th:field="*{passwordCheck}" class="form-control"
+                       aria-describedby="passwordHelp" required minlength="8" maxlength="50">
+                <small id="passwordCheckHelp" class="form-text text-muted">
+                    패스워드를 한 번 더 입력하세요.
+                </small>
+                <small class="invalid-feedback">패스워드를 입력하세요.</small>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password
+                    Error</small>
+            </div>
+
+            <div class="form-group">
+                <label for="name">닉네임</label>
+                <input id="name" type="text" th:field="*{name}" class="form-control"
+                       placeholder="ex) jaime" aria-describedby="nameHelp" required minlength="3" maxlength="20">
+                <small id="nicknameHelp" class="form-text text-muted">
+                    공백없이 문자와 숫자로만 3자 이상 20자 이내로 입력하세요. 가입후에 변경할 수 있습니다.
+                </small>
+                <small class="invalid-feedback">닉네임을 입력하세요.</small>
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
+                    Error</small>
+            </div>
+
+            <div class="form-group">
+                <label id="accountGender">성별</label>
+                <input type="radio" name ="accountGender" th:field="*{accountGender}" value="여" checked>여
+                <input type="radio" name ="accountGender" th:field="*{accountGender}" value="남">남
+            </div>
+
+            <div class="form-group">
+                <label id="accountAge">나이대</label>
+                <select name = "accountAge">
+                    <option th:field="*{accountAge}" value="10대">10대
+                    <option th:field="*{accountAge}" value="20대">20대
+                    <option th:field="*{accountAge}" value="30대">30대
+                    <option th:field="*{accountAge}" value="40대">40대
+                    <option th:field="*{accountAge}" value="50대이상">50대이상
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label id="accountStyle">옷스타일</label>
+                <select name = "accountStyle">
+                    <option th:field="*{accountStyle}" value="캐주얼">캐주얼
+                    <option th:field="*{accountStyle}" value="빈티지">빈티지
+                    <option th:field="*{accountStyle}" value="클래식">클래식
+                    <option th:field="*{accountStyle}" value="모던">모던
+                    <option th:field="*{accountStyle}" value="베이직">베이직
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label id="accountColor">퍼스널 컬러</label>
+                <select name = "accountColor">
+                    <option th:field="*{accountColor}" value="없음">없음
+                    <option th:field="*{accountColor}" value="봄웜톤라이트">봄 웜톤 라이트
+                    <option th:field="*{accountColor}" value="봄웜톤브라이트">봄 웜톤 브라이트
+                    <option th:field="*{accountColor}" value="봄웜톤비비드">봄 웜톤 비비드
+                    <option th:field="*{accountColor}" value="여름쿨톤라이트">여름 쿨톤 라이트
+                    <option th:field="*{accountColor}" value="여름쿨톤쿨뮤트">여름 쿨톤 쿨뮤트
+                    <option th:field="*{accountColor}" value="여름쿨톤소프트">여름 쿨톤 소프트
+                    <option th:field="*{accountColor}" value="가을웜톤웜뮤트">가을 웜톤 웜뮤트
+                    <option th:field="*{accountColor}" value="가을웜톤소프트">가을 웜톤 소프트
+                    <option th:field="*{accountColor}" value="가을웜톤딥">가을 웜톤 딥
+                    <option th:field="*{accountColor}" value="겨울쿨톤딥">겨울 쿨톤 딥
+                    <option th:field="*{accountColor}" value="겨울쿨톤클리어">겨울 쿨톤 클리어
+                    <option th:field="*{accountColor}" value="겨울쿨톤브라이트">겨울 쿨톤 브라이트
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit"
+                        aria-describedby="submitHelp"> Sign Up
+                </button>
+                <small id="submitHelp" class="form-text text-muted">
+                    <a href="#">약관</a>에 동의하시면 가입하기 버튼을 클릭하세요.
+                </small>
+            </div>
+
+        </form>
+    </div>
+    <div th:replace="fragments::footer"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        }, false)
+    }())
+</script>
+
+</body>
+</html>
